@@ -1,0 +1,6 @@
+"name","rotation","min_stock","unit_symbol"
+"beurre","true","1","pc"
+"pates","true","500","g"
+"pomme","false","","pc"
+"radis","true","1","pc"
+"whisky","false","","L"

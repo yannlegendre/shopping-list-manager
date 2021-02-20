@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_173100) do
+ActiveRecord::Schema.define(version: 2021_02_20_181457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -18,6 +18,41 @@ ActiveRecord::Schema.define(version: 2021_02_20_173100) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.bigint "unit_id", null: false
+    t.integer "min_stock"
+    t.boolean "shortage"
+    t.boolean "rotation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["unit_id"], name: "index_ingredients_on_unit_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.boolean "checked"
+    t.integer "quantity"
+    t.bigint "ingredient_id", null: false
+    t.bigint "list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_items_on_ingredient_id"
+    t.index ["list_id"], name: "index_items_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "symbol"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +66,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_173100) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ingredients", "units"
+  add_foreign_key "items", "ingredients"
+  add_foreign_key "items", "lists"
 end
