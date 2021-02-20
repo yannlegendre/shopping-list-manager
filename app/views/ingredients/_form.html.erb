@@ -1,0 +1,7 @@
+<%= simple_form_for ingredient do |f| %>
+  <%= f.input :name %>
+  <%= f.input :rotation, inline_label: 'Recurring item' %>
+  <%= f.input :min_stock %>
+  <%= f.association :unit %>
+  <%= f.submit %>
+<% end %>

@@ -1,1 +1,4 @@
-Prepare exporter of ingredients rake task
+add ingredients / destroy / edit manually  (turboframes ?)
+paginate ingredients
+disable user creation routes before deployment
+setup heroku account

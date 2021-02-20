@@ -3,6 +3,9 @@ require 'csv'
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 filepath    = 'ingredients.csv'
 
+User.find_or_create_by!(email: 'yann.legendre@essec.edu', symbol: 'g')
+
+
 Unit.find_or_create_by!(name: 'gramme', symbol: 'g')
 Unit.find_or_create_by!(name: 'litre', symbol: 'L')
 Unit.find_or_create_by!(name: 'piece', symbol: 'pc')

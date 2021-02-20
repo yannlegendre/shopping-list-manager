@@ -21,4 +21,7 @@
 #
 class Ingredient < ApplicationRecord
   belongs_to :unit
+
+  scope :rotation, ->{ where(rotation: true) }
+  scope :sorted,   ->{ order(:name) }
 end

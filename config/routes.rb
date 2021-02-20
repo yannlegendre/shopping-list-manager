@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root "ingredients#index"
+
+  get '/run', to: 'pages#run'
+
+  resources :ingredients, only: %i[create update destroy index] do
+    post :toggle_shortage, on: :member
+  end
 end

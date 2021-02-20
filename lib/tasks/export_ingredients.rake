@@ -10,7 +10,7 @@ namespace :ingredients do
       filepath    = 'ingredients.csv'
       CSV.open(filepath, 'wb', csv_options) do |csv|
         csv << %w[name	rotation	min_stock	unit_symbol]
-        Ingredient.order(:name).each do |ingredient|
+        Ingredient.sorted.each do |ingredient|
           csv << [ingredient.name, ingredient.rotation, ingredient. min_stock, ingredient.unit.symbol]
         end
       end
