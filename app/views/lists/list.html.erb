@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>List</h1>
+
+  <% list.items.includes(:ingredient).each do |item| %>
+    <p>
+      <%= "#{item.ingredient.name} - #{}" %>
+      <%= link_to 'Toggle check', toggle_checked_item_path(item), method: :post, remote: true %>
+    </p>
+  <% end %>
+</div>

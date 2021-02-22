@@ -20,18 +20,18 @@ ActiveRecord::Schema.define(version: 2021_02_20_181457) do
   enable_extension "unaccent"
 
   create_table "ingredients", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "unit_id", null: false
-    t.integer "min_stock"
-    t.boolean "shortage"
-    t.boolean "rotation"
+    t.integer "min_stock", default: 0, null: false
+    t.boolean "shortage", default: false, null: false
+    t.boolean "rotation", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["unit_id"], name: "index_ingredients_on_unit_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.boolean "checked"
+    t.boolean "checked", default: false, null: false
     t.integer "quantity"
     t.bigint "ingredient_id", null: false
     t.bigint "list_id", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_181457) do
   end
 
   create_table "lists", force: :cascade do |t|
-    t.boolean "active"
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

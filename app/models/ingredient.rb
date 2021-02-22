@@ -3,10 +3,10 @@
 # Table name: ingredients
 #
 #  id         :bigint           not null, primary key
-#  min_stock  :integer
-#  name       :string
-#  rotation   :boolean
-#  shortage   :boolean
+#  min_stock  :integer          default(0), not null
+#  name       :string           not null
+#  rotation   :boolean          default(FALSE), not null
+#  shortage   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  unit_id    :bigint           not null
@@ -22,6 +22,7 @@
 class Ingredient < ApplicationRecord
   belongs_to :unit
 
-  scope :rotation, ->{ where(rotation: true) }
-  scope :sorted,   ->{ order(:name) }
+  scope :rotation,  ->{ where(rotation: true) }
+  scope :shortaged, ->{ where(shortage: true) }
+  scope :sorted,    ->{ order(:name) }
 end

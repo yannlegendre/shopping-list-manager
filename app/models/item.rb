@@ -3,7 +3,7 @@
 # Table name: items
 #
 #  id            :bigint           not null, primary key
-#  checked       :boolean
+#  checked       :boolean          default(FALSE), not null
 #  quantity      :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
