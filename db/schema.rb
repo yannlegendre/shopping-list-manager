@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_181457) do
+ActiveRecord::Schema.define(version: 2021_02_22_212029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 2021_02_20_181457) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipe_items", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_recipe_items_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_items_on_recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
@@ -69,4 +85,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_181457) do
   add_foreign_key "ingredients", "units"
   add_foreign_key "items", "ingredients"
   add_foreign_key "items", "lists"
+  add_foreign_key "recipe_items", "ingredients"
+  add_foreign_key "recipe_items", "recipes"
 end

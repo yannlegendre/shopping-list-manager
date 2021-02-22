@@ -18,7 +18,6 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    binding.pry
     if Ingredient.create(ingredient_params)
       redirect_to ingredients_path
     else

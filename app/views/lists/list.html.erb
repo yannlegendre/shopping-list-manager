@@ -1,10 +1,10 @@
 <div class="container">
   <h1>List</h1>
 
-  <% list.items.includes(:ingredient).each do |item| %>
+  <% list.items.includes(:ingredient, ingredient: [:unit]).each do |item| %>
     <p>
-      <%= "#{item.ingredient.name} - #{}" %>
-      <%= link_to 'Toggle check', toggle_checked_item_path(item), method: :post, remote: true %>
+      <%= "#{item.ingredient.name} - x#{item.quantity} #{item.ingredient.unit.symbol}"%>
+      <%= toggle_checked_button(item) %>
     </p>
   <% end %>
 </div>

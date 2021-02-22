@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
 
   def toggle_checked
     @item.update(checked: !@item.checked)
+    # todo : ajax
+    redirect_to current_list_path
   end
 
   private

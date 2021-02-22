@@ -1,9 +1,5 @@
 <p>
   <%= ingredient.name %>
-  <%= 'SHORTAGE' if ingredient.shortage %>
-  <%= link_to '[x]', ingredient_path(ingredient), method: :delete, data: { confirm: "Are you sure?" }  %>
-  <% # TODO: make dynamic %>
-  <% if ingredient.rotation %>
-    <%= link_to('Shortage', toggle_shortage_ingredient_path(ingredient), method: :post) %>
-  <% end %>
+  <%= toggle_shortage_button(ingredient) %>
+  <%= link_to '[x]', ingredient_path(ingredient), method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>
 </p>
